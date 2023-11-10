@@ -1,3 +1,5 @@
+part of core;
+
 class GqlQuery {
   String charactersQuery = '''
   query (\$page: Int!){
