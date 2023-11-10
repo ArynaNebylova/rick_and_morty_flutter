@@ -10,6 +10,8 @@ part 'characters_state.dart';
 class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
   final GetCharactersUseCase getCharactersUseCase;
   bool isInitial = true;
+  List<CharactersEntity> characters = [];
+
   CharactersBloc({required this.getCharactersUseCase}) : super(Loading()) {
     on<CharactersLoadEvent>(
       (event, emit) async {
@@ -23,7 +25,10 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
       Loading(),
     );
     try {
-      var characters = await getCharactersUseCase.call(event.page);
+      var newCharactersData = await getCharactersUseCase.call(event.page);
+
+      characters = [...characters, ...newCharactersData];
+
       emit(
         Success(characters: characters),
       );

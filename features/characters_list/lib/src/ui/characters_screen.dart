@@ -28,21 +28,25 @@ class _CharactersScreen extends State<CharactersScreen> {
         create: (_) => CharactersBloc(
           getCharactersUseCase: sl<GetCharactersUseCase>(),
         )..add(
-            const CharactersLoadEvent(1),
+            CharactersLoadEvent(page),
           ),
         child: BlocBuilder<CharactersBloc, CharactersState>(
           builder: (BuildContext context, CharactersState state) {
             if (state is Loading) {
               return const LoadingWidget();
             } else if (state is Error) {
-              return CustomErrorWidget(onTap: () => loadMoreData(context));
+              return CustomErrorWidget(
+                onTap: () => loadData(context),
+              );
             } else if (state is Success) {
               return CharactersContent(
                 characters: state.characters,
-                loadMoreData: () => loadMoreData(context),
+                loadMoreData: () => loadData(context),
               );
             } else {
-              return CustomErrorWidget(onTap: () => loadMoreData(context));
+              return CustomErrorWidget(
+                onTap: () => loadData(context),
+              );
             }
           },
         ),
@@ -50,7 +54,7 @@ class _CharactersScreen extends State<CharactersScreen> {
     );
   }
 
-  void loadMoreData(BuildContext context) async {
+  void loadData(BuildContext context) async {
     setState(
       () {
         page = page + 1;

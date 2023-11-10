@@ -1,37 +1,14 @@
-import 'package:character/character.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
-class CharactersContent extends StatefulWidget {
+import 'character_widget.dart';
+
+class CharactersContent extends StatelessWidget {
   final List<CharactersEntity> characters;
   final VoidCallback loadMoreData;
-
   const CharactersContent(
-      {Key? key, required this.characters, required this.loadMoreData})
-      : super(key: key);
-
-  @override
-  State<CharactersContent> createState() => _CharactersContent();
-}
-
-class _CharactersContent extends State<CharactersContent> {
-  List<CharactersEntity> characters = [];
-
-  @override
-  void initState() {
-    super.initState();
-    characters = widget.characters;
-  }
-
-  void _loadMoreData(BuildContext context) {
-    widget.loadMoreData();
-    setState(
-      () {
-        characters = [...characters, ...widget.characters];
-      },
-    );
-  }
+      {super.key, required this.characters, required this.loadMoreData});
 
   @override
   Widget build(BuildContext context) {
@@ -40,26 +17,16 @@ class _CharactersContent extends State<CharactersContent> {
         onNotification: (notification) {
           if (notification is ScrollEndNotification &&
               notification.metrics.extentAfter == 0) {
-            _loadMoreData(context);
+            loadMoreData();
           }
           return false;
         },
         child: ListView.builder(
-          itemCount: characters.length + 1,
+          itemCount: characters.length,
           itemBuilder: (context, index) {
             if (index < characters.length) {
-              return TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) {
-                      return CharacterScreen(id: characters[index].id);
-                    }),
-                  );
-                },
-                child: ListTile(
-                  title: Text(characters[index].name),
-                ),
+              return CharacterWidget(
+                character: characters[index],
               );
             } else {
               return const Center(
