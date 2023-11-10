@@ -15,31 +15,48 @@ class CharactersScreen extends StatefulWidget {
 }
 
 class _CharactersScreen extends State<CharactersScreen> {
+  int page = 1;
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<CharactersBloc>(
-      create: (_) => CharactersBloc(
-        getCharactersUseCase: sl<GetCharactersUseCase>(),
-      )..add(
-          const CharactersLoadEvent(1),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: const Text('Characters'),
+      ),
+      body: BlocProvider<CharactersBloc>(
+        create: (_) => CharactersBloc(
+          getCharactersUseCase: sl<GetCharactersUseCase>(),
+        )..add(
+            const CharactersLoadEvent(1),
+          ),
+        child: BlocBuilder<CharactersBloc, CharactersState>(
+          builder: (BuildContext context, CharactersState state) {
+            if (state is Loading) {
+              return const LoadingWidget();
+            } else if (state is Error) {
+              return CustomErrorWidget(onTap: () => loadMoreData(context));
+            } else if (state is Success) {
+              return CharactersContent(
+                characters: state.characters,
+                loadMoreData: () => loadMoreData(context),
+              );
+            } else {
+              return CustomErrorWidget(onTap: () => loadMoreData(context));
+            }
+          },
         ),
-      child: BlocBuilder<CharactersBloc, CharactersState>(
-        builder: (BuildContext context, CharactersState state) {
-          if (state is Loading) {
-            return const LoadingWidget();
-          } else if (state is Error) {
-            return CustomErrorWidget(onTap: () => _refresh);
-          } else if (state is Success) {
-            return CharactersContent(characters: state.characters);
-          } else {
-            return CustomErrorWidget(onTap: () => _refresh);
-          }
-        },
       ),
     );
   }
 
-  void _refresh(BuildContext context, int page) {
+  void loadMoreData(BuildContext context) async {
+    setState(
+      () {
+        page = page + 1;
+      },
+    );
+
     context.read<CharactersBloc>().add(
           CharactersLoadEvent(page),
         );

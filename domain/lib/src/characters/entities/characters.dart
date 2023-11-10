@@ -2,7 +2,7 @@ part of characters;
 
 class CharactersEntity extends Equatable {
   final String name;
-  final int id;
+  final String id;
 
   const CharactersEntity({
     required this.name,

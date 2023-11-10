@@ -7,21 +7,17 @@ class CharactersDI extends DI {
 
   @override
   void setup() {
-    sl.registerSingletonWithDependencies<GraphQLService>(
+    sl.registerLazySingleton<GraphQLService>(
       () => GraphQLServiceImpl(
-        graphQLClient: sl.get<GraphQLClient>(),
-        query: sl.get<GqlQuery>(),
+        gqlConfig: sl.call(),
+        query: sl.call(),
       ),
-      dependsOn: <Type>[GraphQLClient, GqlQuery],
     );
 
-    sl.registerSingletonWithDependencies<domain.CharactersRepository>(
+    sl.registerLazySingleton<domain.CharactersRepository>(
       () => CharactersRepositoryImpl(
-        graphQLService: sl.get<GraphQLService>(),
+        graphQLService: sl.call(),
       ),
-      dependsOn: <Type>[
-        GraphQLService,
-      ],
     );
 
     sl.registerFactory<domain.GetCharactersUseCase>(

@@ -8,13 +8,9 @@ class CustomErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        children: [
-          const Text('error, try again'),
-          MaterialButton(
-            onPressed: onTap,
-          ),
-        ],
+      child: MaterialButton(
+        onPressed: () => onTap(),
+        child: const Text('error, try again'),
       ),
     );
   }

@@ -7,14 +7,12 @@ class CoreDI extends DI {
 
   @override
   void setup() {
-    sl.registerLazySingleton<GraphQLClient>(
-      () => GraphQLConfig.client(),
+    sl.registerLazySingleton<GraphQLConfig>(
+      () => GraphQLConfig(),
     );
-    //  getIt.registerSingleton<AppConfig>(
-    //   AppConfig.fromFlavor(flavor: flavor),
-    // );
-    //  getIt.registerSingleton<AppConfig>(
-    //   AppConfig.fromFlavor(flavor: flavor),
-    // );
+
+    sl.registerLazySingleton<GqlQuery>(
+      () => GqlQuery(),
+    );
   }
 }
