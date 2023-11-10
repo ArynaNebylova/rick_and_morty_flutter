@@ -1,3 +1,4 @@
+import 'package:character/character.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -47,8 +48,18 @@ class _CharactersContent extends State<CharactersContent> {
           itemCount: characters.length + 1,
           itemBuilder: (context, index) {
             if (index < characters.length) {
-              return ListTile(
-                title: Text(characters[index].name),
+              return TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return CharacterScreen(id: characters[index].id);
+                    }),
+                  );
+                },
+                child: ListTile(
+                  title: Text(characters[index].name),
+                ),
               );
             } else {
               return const Center(

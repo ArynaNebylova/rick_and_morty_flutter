@@ -13,14 +13,14 @@ class GqlQuery {
   ''';
 
   String singleCharacterQuery = '''
-  query {
+  query (\$id: ID!){
     character(id: \$id){
-        name
-        image
-        species
-        gender
-        status 
-    }
+      name
+      image
+      species
+      gender
+      status
+    }   
   }
   ''';
 }
