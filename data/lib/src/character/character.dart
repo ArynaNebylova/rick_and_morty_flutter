@@ -9,7 +9,7 @@ part 'di/character_di.dart';
 
 part 'models/character_model.dart';
 
-part 'providers/gql_service.dart';
-part 'providers/gql_service_impl.dart';
+part 'services/gql_service.dart';
+part 'services/gql_service_impl.dart';
 
 part 'repositories/character_repository_impl.dart';
