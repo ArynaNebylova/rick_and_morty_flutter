@@ -13,8 +13,9 @@ class Error extends CharactersState {}
 
 class Success extends CharactersState {
   final List<CharactersEntity> characters;
+  final bool reachedMax;
 
-  const Success({required this.characters});
+  const Success({required this.characters, required this.reachedMax});
 
   @override
   List<Object> get props => [characters];

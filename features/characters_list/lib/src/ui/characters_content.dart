@@ -2,13 +2,17 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
-import 'character_widget.dart';
+import 'widgets/character_widget.dart';
 
 class CharactersContent extends StatelessWidget {
   final List<CharactersEntity> characters;
   final VoidCallback loadMoreData;
+  final bool reachedMax;
   const CharactersContent(
-      {super.key, required this.characters, required this.loadMoreData});
+      {super.key,
+      required this.characters,
+      required this.loadMoreData,
+      required this.reachedMax});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class CharactersContent extends StatelessWidget {
           return false;
         },
         child: ListView.builder(
-          itemCount: characters.length,
+          itemCount: reachedMax ? characters.length : characters.length + 1,
           itemBuilder: (context, index) {
             if (index < characters.length) {
               return CharacterWidget(

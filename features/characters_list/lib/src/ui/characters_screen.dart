@@ -7,15 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/characters_bloc.dart';
 import './characters_content.dart';
 
-class CharactersScreen extends StatefulWidget {
+class CharactersScreen extends StatelessWidget {
   const CharactersScreen({super.key});
-
-  @override
-  State<StatefulWidget> createState() => _CharactersScreen();
-}
-
-class _CharactersScreen extends State<CharactersScreen> {
-  int page = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +21,7 @@ class _CharactersScreen extends State<CharactersScreen> {
         create: (_) => CharactersBloc(
           getCharactersUseCase: sl<GetCharactersUseCase>(),
         )..add(
-            CharactersLoadEvent(page),
+            CharactersLoadEvent(),
           ),
         child: BlocBuilder<CharactersBloc, CharactersState>(
           builder: (BuildContext context, CharactersState state) {
@@ -40,13 +33,12 @@ class _CharactersScreen extends State<CharactersScreen> {
               );
             } else if (state is Success) {
               return CharactersContent(
+                reachedMax: state.reachedMax,
                 characters: state.characters,
                 loadMoreData: () => loadData(context),
               );
             } else {
-              return CustomErrorWidget(
-                onTap: () => loadData(context),
-              );
+              return Container();
             }
           },
         ),
@@ -55,14 +47,8 @@ class _CharactersScreen extends State<CharactersScreen> {
   }
 
   void loadData(BuildContext context) async {
-    setState(
-      () {
-        page = page + 1;
-      },
-    );
-
     context.read<CharactersBloc>().add(
-          CharactersLoadEvent(page),
+          CharactersLoadEvent(),
         );
   }
 }
