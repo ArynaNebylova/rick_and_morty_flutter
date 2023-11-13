@@ -2,22 +2,18 @@ part of character;
 
 class GraphQLServiceImpl implements GraphQLService {
   final GqlQuery _query;
-  final GraphQLConfig _gqlConfig;
-  late final GraphQLClient _graphQLClient;
+  final GqlClient _gqlClient;
 
   GraphQLServiceImpl({
-    required GraphQLConfig gqlConfig,
+    required GqlClient gqlClient,
     required GqlQuery query,
   })  : _query = query,
-        _gqlConfig = gqlConfig {
-    _graphQLClient =
-        GraphQLClient(link: _gqlConfig.httpLink, cache: GraphQLCache());
-  }
+        _gqlClient = gqlClient;
 
   @override
   Future<Map?> getCharacter(String id) async {
     try {
-      final queryData = await _graphQLClient.query(
+      final queryData = await _gqlClient.gqlClient.query(
         QueryOptions(
           document: gql(_query.singleCharacterQuery),
           variables: {"id": id},

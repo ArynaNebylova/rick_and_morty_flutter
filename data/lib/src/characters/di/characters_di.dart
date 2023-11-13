@@ -9,7 +9,7 @@ class CharactersDI extends DI {
   void setup() {
     sl.registerLazySingleton<GraphQLService>(
       () => GraphQLServiceImpl(
-        gqlConfig: sl.call(),
+        gqlClient: sl.call(),
         query: sl.call(),
       ),
     );
