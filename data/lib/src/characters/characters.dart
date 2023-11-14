@@ -8,6 +8,7 @@ import 'package:domain/domain.dart' as domain;
 part 'di/characters_di.dart';
 
 part 'models/characters_model.dart';
+part 'models/single_character_model.dart';
 
 part 'services/gql_service.dart';
 part 'services/gql_service_impl.dart';

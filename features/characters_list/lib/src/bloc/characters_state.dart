@@ -12,7 +12,7 @@ class Loading extends CharactersState {}
 class Error extends CharactersState {}
 
 class Success extends CharactersState {
-  final List<CharactersEntity> characters;
+  final List<SingleCharacterEntity> characters;
   final bool reachedMax;
 
   const Success({required this.characters, required this.reachedMax});

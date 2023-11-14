@@ -11,7 +11,7 @@ class GraphQLServiceImpl implements GraphQLService {
         _gqlClient = gqlClient;
 
   @override
-  Future<List?> getCharacters(int page) async {
+  Future<dynamic> getCharacters(int page) async {
     try {
       final queryData = await _gqlClient.gqlClient.query(
         QueryOptions(
@@ -20,7 +20,7 @@ class GraphQLServiceImpl implements GraphQLService {
         ),
       );
 
-      return queryData.data?['characters']['results'];
+      return queryData.data?['characters'];
     } catch (err) {
       throw Exception(err);
     }

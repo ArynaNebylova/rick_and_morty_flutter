@@ -3,7 +3,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
 class CharacterWidget extends StatelessWidget {
-  final CharactersEntity character;
+  final SingleCharacterEntity character;
   const CharacterWidget({super.key, required this.character});
 
   @override

@@ -8,13 +8,13 @@ class CharactersRepositoryImpl implements domain.CharactersRepository {
   }) : _graphQLService = graphQLService;
 
   @override
-  Future<List<domain.CharactersEntity>> getCharactersPerPage(int page) async {
-    final List? characters = await _graphQLService.getCharacters(page);
+  Future<domain.CharactersEntity> getCharactersPerPage(int page) async {
+    final characters = await _graphQLService.getCharacters(page);
 
     if (characters == null || characters.isEmpty) {
-      return [];
+      return const domain.CharactersEntity(characters: [], nextPage: null);
     }
 
-    return characters.map((e) => CharactersModel.fromMap(map: e)).toList();
+    return CharactersModel.fromMap(map: characters);
   }
 }

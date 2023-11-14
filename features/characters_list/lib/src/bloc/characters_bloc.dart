@@ -10,8 +10,8 @@ part 'characters_state.dart';
 class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
   final GetCharactersUseCase getCharactersUseCase;
   bool isInitial = true;
-  int page = 1;
-  List<CharactersEntity> characters = [];
+  int? nextPage = 1;
+  List<SingleCharacterEntity> charactersList = [];
 
   CharactersBloc({required this.getCharactersUseCase}) : super(Loading()) {
     on<CharactersLoadEvent>(
@@ -30,17 +30,17 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     }
 
     try {
-      var newCharactersData = await getCharactersUseCase.call(page);
+      var newCharactersData = await getCharactersUseCase.call(nextPage ?? 0);
 
-      characters = [...characters, ...newCharactersData];
-      page = page + 1;
+      nextPage = newCharactersData.nextPage;
+      charactersList = [...charactersList, ...newCharactersData.characters];
 
-      newCharactersData.isEmpty || newCharactersData.length < 20
+      newCharactersData.nextPage == null
           ? emit(
-              Success(characters: characters, reachedMax: true),
+              Success(characters: charactersList, reachedMax: true),
             )
           : emit(
-              Success(characters: characters, reachedMax: false),
+              Success(characters: charactersList, reachedMax: false),
             );
     } catch (_) {
       emit(

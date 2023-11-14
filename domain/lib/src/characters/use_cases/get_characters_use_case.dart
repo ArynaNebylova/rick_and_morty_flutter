@@ -5,7 +5,7 @@ class GetCharactersUseCase {
 
   GetCharactersUseCase({required this.repository});
 
-  Future<List<CharactersEntity>> call(int page) {
+  Future<CharactersEntity> call(int page) {
     return repository.getCharactersPerPage(page);
   }
 }

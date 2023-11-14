@@ -1,17 +1,14 @@
 part of characters;
 
 class CharactersEntity extends Equatable {
-  final String name;
-  final String id;
+  final List<SingleCharacterEntity> characters;
+  final int? nextPage;
 
   const CharactersEntity({
-    required this.name,
-    required this.id,
+    required this.characters,
+    required this.nextPage,
   });
 
   @override
-  List<Object?> get props => [
-        name,
-        id,
-      ];
+  List<Object?> get props => [characters, nextPage];
 }

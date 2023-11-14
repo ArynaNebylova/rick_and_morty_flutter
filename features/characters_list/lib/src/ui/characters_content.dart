@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'widgets/character_widget.dart';
 
 class CharactersContent extends StatelessWidget {
-  final List<CharactersEntity> characters;
+  final List<SingleCharacterEntity> characters;
   final VoidCallback loadMoreData;
   final bool reachedMax;
   const CharactersContent(
@@ -21,7 +21,9 @@ class CharactersContent extends StatelessWidget {
         onNotification: (notification) {
           if (notification is ScrollEndNotification &&
               notification.metrics.extentAfter == 0) {
-            loadMoreData();
+            if (!reachedMax) {
+              loadMoreData();
+            }
           }
           return false;
         },
