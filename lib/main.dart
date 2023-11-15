@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:characters_list/characters_list.dart';
+import 'package:rick_and_morty/features/characters/presentation/pages/characters_screen.dart';
 import './di/init_di.dart' as di;
 
 void main() async {
