@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty/features/characters/presentation/pages/characters_screen.dart';
-import 'package:rick_and_morty/features/locations/presentation/pages/locations_screen.dart';
-import './di/init_di.dart' as di;
+import 'package:rick_and_morty/src/ui/characters/pages/characters_screen.dart';
+import 'src/di/init_di.dart' as di;
 
 void main() async {
   await di.init();
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
         useMaterial3: true,
       ),
-      home: const LocationsScreen(),
+      home: const CharactersScreen(),
     );
   }
 }
