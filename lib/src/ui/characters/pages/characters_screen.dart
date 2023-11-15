@@ -12,36 +12,30 @@ class CharactersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Characters'),
-      ),
-      body: BlocProvider<CharactersBloc>(
-        create: (_) => CharactersBloc(
-          getCharactersUseCase: sl<GetCharactersUseCase>(),
-        )..add(
-            CharactersLoadEvent(),
-          ),
-        child: BlocBuilder<CharactersBloc, CharactersState>(
-          builder: (BuildContext context, CharactersState state) {
-            if (state is Loading) {
-              return const LoadingWidget();
-            } else if (state is Error) {
-              return CustomErrorWidget(
-                onTap: () => loadData(context),
-              );
-            } else if (state is Success) {
-              return CharactersContent(
-                reachedMax: state.reachedMax,
-                characters: state.characters,
-                loadMoreData: () => loadData(context),
-              );
-            } else {
-              return Container();
-            }
-          },
+    return BlocProvider<CharactersBloc>(
+      create: (_) => CharactersBloc(
+        getCharactersUseCase: sl<GetCharactersUseCase>(),
+      )..add(
+          CharactersLoadEvent(),
         ),
+      child: BlocBuilder<CharactersBloc, CharactersState>(
+        builder: (BuildContext context, CharactersState state) {
+          if (state is Loading) {
+            return const LoadingWidget();
+          } else if (state is Error) {
+            return CustomErrorWidget(
+              onTap: () => loadData(context),
+            );
+          } else if (state is Success) {
+            return CharactersContent(
+              reachedMax: state.reachedMax,
+              characters: state.characters,
+              loadMoreData: () => loadData(context),
+            );
+          } else {
+            return Container();
+          }
+        },
       ),
     );
   }

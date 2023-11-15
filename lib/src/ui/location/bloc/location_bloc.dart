@@ -15,6 +15,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
       },
     );
   }
+
   Future<void> loadEvent(LocationLoadEvent event, Emitter emit) async {
     emit(
       Loading(),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty/src/ui/characters/pages/characters_screen.dart';
+import 'package:rick_and_morty/src/ui/home/pages/home_screen.dart';
 import 'src/di/init_di.dart' as di;
 
 void main() async {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
         useMaterial3: true,
       ),
-      home: const CharactersScreen(),
+      home: const HomeScreen(),
     );
   }
 }

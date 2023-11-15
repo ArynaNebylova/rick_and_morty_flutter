@@ -14,32 +14,26 @@ class CharacterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Character'),
-      ),
-      body: BlocProvider<CharacterBloc>(
-        create: (_) => CharacterBloc(
-          getCharacterUseCase: sl<GetCharacterUseCase>(),
-        )..add(
-            CharacterLoadEvent(id),
-          ),
-        child: BlocBuilder<CharacterBloc, CharacterState>(
-          builder: (BuildContext context, CharacterState state) {
-            if (state is Loading) {
-              return const LoadingWidget();
-            } else if (state is Error) {
-              return CustomErrorWidget(onTap: () => refresh(context));
-            } else if (state is Success) {
-              return CharacterContent(
-                character: state.character,
-              );
-            } else {
-              return CustomErrorWidget(onTap: () => refresh(context));
-            }
-          },
+    return BlocProvider<CharacterBloc>(
+      create: (_) => CharacterBloc(
+        getCharacterUseCase: sl<GetCharacterUseCase>(),
+      )..add(
+          CharacterLoadEvent(id),
         ),
+      child: BlocBuilder<CharacterBloc, CharacterState>(
+        builder: (BuildContext context, CharacterState state) {
+          if (state is Loading) {
+            return const LoadingWidget();
+          } else if (state is Error) {
+            return CustomErrorWidget(onTap: () => refresh(context));
+          } else if (state is Success) {
+            return CharacterContent(
+              character: state.character,
+            );
+          } else {
+            return CustomErrorWidget(onTap: () => refresh(context));
+          }
+        },
       ),
     );
   }

@@ -8,20 +8,26 @@ class LocationContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('name: ${location.name}'),
-              Text('type: ${location.type}'),
-              Text('dimension: ${location.dimension}'),
-              Text('created: ${DateTime.parse(location.created)}'),
-            ],
-          ),
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(location.name),
+      ),
+      body: SafeArea(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('name: ${location.name}'),
+                Text('type: ${location.type}'),
+                Text('dimension: ${location.dimension}'),
+                Text('created: ${DateTime.parse(location.created).toLocal()}'),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

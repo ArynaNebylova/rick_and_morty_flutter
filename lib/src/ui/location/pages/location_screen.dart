@@ -14,32 +14,26 @@ class LocationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Location'),
-      ),
-      body: BlocProvider<LocationBloc>(
-        create: (_) => LocationBloc(
-          getLocationUseCase: sl<GetLocationUseCase>(),
-        )..add(
-            LocationLoadEvent(id),
-          ),
-        child: BlocBuilder<LocationBloc, LocationState>(
-          builder: (BuildContext context, LocationState state) {
-            if (state is Loading) {
-              return const LoadingWidget();
-            } else if (state is Error) {
-              return CustomErrorWidget(onTap: () => refresh(context));
-            } else if (state is Success) {
-              return LocationContent(
-                location: state.location,
-              );
-            } else {
-              return CustomErrorWidget(onTap: () => refresh(context));
-            }
-          },
+    return BlocProvider<LocationBloc>(
+      create: (_) => LocationBloc(
+        getLocationUseCase: sl<GetLocationUseCase>(),
+      )..add(
+          LocationLoadEvent(id),
         ),
+      child: BlocBuilder<LocationBloc, LocationState>(
+        builder: (BuildContext context, LocationState state) {
+          if (state is Loading) {
+            return const LoadingWidget();
+          } else if (state is Error) {
+            return CustomErrorWidget(onTap: () => refresh(context));
+          } else if (state is Success) {
+            return LocationContent(
+              location: state.location,
+            );
+          } else {
+            return CustomErrorWidget(onTap: () => refresh(context));
+          }
+        },
       ),
     );
   }
