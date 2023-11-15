@@ -26,4 +26,29 @@ class GqlQuery {
     }   
   }
   ''';
+
+  String locationsQuery = '''
+  query (\$page: Int!){
+    locations(page: \$page){
+      info {
+        next
+      }
+      results{
+        name
+        id
+      }
+    }
+  }
+  ''';
+
+  String singleLocationQuery = '''
+  query (\$id: ID!){
+    location(id: \$id){
+      name
+      type
+      dimension
+      created
+    }   
+  }
+  ''';
 }
