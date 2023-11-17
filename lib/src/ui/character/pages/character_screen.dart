@@ -1,12 +1,12 @@
-import 'package:provider/provider.dart';
-import 'package:rick_and_morty/src/data/character/character.dart';
-import 'package:rick_and_morty/src/domain/character/character.dart';
-import 'package:rick_and_morty/src/core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:rick_and_morty/src/core_ui/core_ui.dart';
+import 'package:rick_and_morty/src/data/character/character.dart';
+import 'package:rick_and_morty/src/domain/character/character.dart';
 
-import '../bloc/character_bloc.dart';
-import '../widgets/character_content.dart';
+import 'package:rick_and_morty/src/ui/character/bloc/character_bloc.dart';
+import 'package:rick_and_morty/src/ui/character/widgets/character_content.dart';
 
 class CharacterScreen extends StatelessWidget {
   final String id;
@@ -44,7 +44,7 @@ class CharacterScreen extends StatelessWidget {
     );
   }
 
-  void refresh(BuildContext context) async {
+  Future refresh(BuildContext context) async {
     context.read<CharacterBloc>().add(
           CharacterLoadEvent(id),
         );

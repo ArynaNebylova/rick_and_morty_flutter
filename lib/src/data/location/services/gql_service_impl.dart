@@ -1,4 +1,4 @@
-part of location;
+part of '../location.dart';
 
 class GraphQLServiceImpl implements GraphQLService {
   final GqlQuery _query;

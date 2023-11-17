@@ -1,4 +1,4 @@
-part of core;
+part of '../core.dart';
 
 class GqlClient {
   GraphQLClient get gqlClient => GraphQLClient(

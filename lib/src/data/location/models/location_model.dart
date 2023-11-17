@@ -1,12 +1,12 @@
-part of location;
+part of '../location.dart';
 
 class LocationModel extends domain.LocationEntity {
   const LocationModel({
-    required final String name,
-    required final String type,
-    required final String dimension,
-    required final String created,
-  }) : super(name: name, type: type, dimension: dimension, created: created);
+    required super.name,
+    required super.type,
+    required super.dimension,
+    required super.created,
+  });
 
   factory LocationModel.fromMap({required Map map}) => LocationModel(
         name: map['name'],

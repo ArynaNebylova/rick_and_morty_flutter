@@ -1,4 +1,4 @@
-part of locations;
+part of '../locations.dart';
 
 class LocationsDI extends DI {
   const LocationsDI();

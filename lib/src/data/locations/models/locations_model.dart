@@ -1,10 +1,10 @@
-part of locations;
+part of '../locations.dart';
 
 class LocationsModel extends domain.LocationsEntity {
   const LocationsModel({
-    required final List<SingleLocationModel> locations,
-    required final int? nextPage,
-  }) : super(locations: locations, nextPage: nextPage);
+    required List<SingleLocationModel> super.locations,
+    required super.nextPage,
+  });
 
   factory LocationsModel.fromMap({required Map<String, dynamic> map}) =>
       LocationsModel(

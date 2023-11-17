@@ -1,4 +1,4 @@
-part of character;
+part of '../character.dart';
 
 class GraphQLServiceImpl implements GraphQLService {
   final GqlQuery _query;
@@ -11,7 +11,7 @@ class GraphQLServiceImpl implements GraphQLService {
         _gqlClient = gqlClient;
 
   @override
-  Future<Map?> getCharacter(String id) async {
+  Future<Map<String, String>> getCharacter(String id) async {
     try {
       final queryData = await _gqlClient.gqlClient.query(
         QueryOptions(
@@ -20,7 +20,7 @@ class GraphQLServiceImpl implements GraphQLService {
         ),
       );
 
-      return queryData.data?['character'];
+      return Map<String, String>.from(queryData.data?['character'] as Map);
     } catch (err) {
       throw Exception(err);
     }

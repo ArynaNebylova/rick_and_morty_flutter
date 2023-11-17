@@ -1,4 +1,4 @@
-part of location;
+part of '../location.dart';
 
 class LocationRepositoryImpl implements domain.LocationRepository {
   final GraphQLService _graphQLService;

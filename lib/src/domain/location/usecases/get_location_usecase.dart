@@ -1,4 +1,4 @@
-part of location;
+part of '../location.dart';
 
 class GetLocationUseCase {
   final LocationRepository repository;

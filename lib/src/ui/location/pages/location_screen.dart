@@ -1,12 +1,11 @@
-import 'package:provider/provider.dart';
-import 'package:rick_and_morty/src/data/location/location.dart';
-import 'package:rick_and_morty/src/domain/location/location.dart';
-import 'package:rick_and_morty/src/core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../bloc/location_bloc.dart';
-import '../widgets/location_content.dart';
+import 'package:provider/provider.dart';
+import 'package:rick_and_morty/src/core_ui/core_ui.dart';
+import 'package:rick_and_morty/src/data/location/location.dart';
+import 'package:rick_and_morty/src/domain/location/location.dart';
+import 'package:rick_and_morty/src/ui/location/bloc/location_bloc.dart';
+import 'package:rick_and_morty/src/ui/location/widgets/location_content.dart';
 
 class LocationScreen extends StatelessWidget {
   final String id;
@@ -44,7 +43,7 @@ class LocationScreen extends StatelessWidget {
     );
   }
 
-  void refresh(BuildContext context) async {
+  Future refresh(BuildContext context) async {
     context.read<LocationBloc>().add(
           LocationLoadEvent(id),
         );

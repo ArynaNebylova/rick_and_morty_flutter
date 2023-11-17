@@ -1,13 +1,14 @@
-part of characters;
+part of '../characters.dart';
 
 class SingleCharacterModel extends domain.SingleCharacterEntity {
   const SingleCharacterModel({
-    required final String name,
-    required final String id,
-  }) : super(name: name, id: id);
+    required super.name,
+    required super.id,
+  });
 
-  factory SingleCharacterModel.fromMap({required map}) => SingleCharacterModel(
-        name: map['name'],
-        id: map['id'],
+  factory SingleCharacterModel.fromMap({required Map<String, String> map}) =>
+      SingleCharacterModel(
+        name: map['name']!,
+        id: map['id']!,
       );
 }

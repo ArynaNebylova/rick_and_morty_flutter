@@ -21,7 +21,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
       Loading(),
     );
     try {
-      var location = await getLocationUseCase.call(event.id);
+      final location = await getLocationUseCase.call(event.id);
 
       emit(
         Success(location: location),

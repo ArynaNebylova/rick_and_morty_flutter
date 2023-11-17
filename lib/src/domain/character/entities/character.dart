@@ -1,4 +1,4 @@
-part of character;
+part of '../character.dart';
 
 class CharacterEntity {
   final String name;

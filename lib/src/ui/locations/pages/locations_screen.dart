@@ -1,12 +1,12 @@
-import 'package:provider/provider.dart';
-import 'package:rick_and_morty/src/data/locations/locations.dart';
-import 'package:rick_and_morty/src/domain/locations/locations.dart';
-import 'package:rick_and_morty/src/core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:rick_and_morty/src/core_ui/core_ui.dart';
+import 'package:rick_and_morty/src/data/locations/locations.dart';
+import 'package:rick_and_morty/src/domain/locations/locations.dart';
 
-import '../bloc/locations_bloc.dart';
-import '../widgets/locations_content.dart';
+import 'package:rick_and_morty/src/ui/locations/bloc/locations_bloc.dart';
+import 'package:rick_and_morty/src/ui/locations/widgets/locations_content.dart';
 
 class LocationsScreen extends StatelessWidget {
   const LocationsScreen({super.key});
@@ -37,7 +37,7 @@ class LocationsScreen extends StatelessWidget {
                   loadMoreData: () => loadData(context),
                 );
               } else {
-                return Container();
+                return const SizedBox.shrink();
               }
             },
           ),
@@ -46,7 +46,7 @@ class LocationsScreen extends StatelessWidget {
     );
   }
 
-  void loadData(BuildContext context) async {
+  Future loadData(BuildContext context) async {
     context.read<LocationsBloc>().add(
           LocationsLoadEvent(),
         );

@@ -1,4 +1,4 @@
-part of locations;
+part of '../locations.dart';
 
 class LocationsEntity {
   final List<SingleLocationEntity> locations;

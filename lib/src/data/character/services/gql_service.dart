@@ -1,5 +1,5 @@
-part of character;
+part of '../character.dart';
 
 abstract class GraphQLService {
-  Future<Map?> getCharacter(String id);
+  Future<Map<String, String>> getCharacter(String id);
 }

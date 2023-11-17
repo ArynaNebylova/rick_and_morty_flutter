@@ -29,7 +29,7 @@ class LocationsBloc extends Bloc<LocationsEvent, LocationsState> {
     }
 
     try {
-      var newLocationsData = await getLocationsUseCase.call(nextPage ?? 0);
+      final newLocationsData = await getLocationsUseCase.call(nextPage ?? 0);
 
       nextPage = newLocationsData.nextPage;
       locationsList = [...locationsList, ...newLocationsData.locations];
