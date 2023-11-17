@@ -1,7 +1,5 @@
 part of location;
 
-const LocationDI locationDI = LocationDI();
-
 class LocationDI extends DI {
   const LocationDI();
 

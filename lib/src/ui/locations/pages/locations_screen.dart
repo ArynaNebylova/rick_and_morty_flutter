@@ -14,7 +14,7 @@ class LocationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: locationsDI.setup(),
+      providers: const LocationsDI().setup(),
       builder: (context, _) {
         return BlocProvider<LocationsBloc>(
           create: (_) => LocationsBloc(

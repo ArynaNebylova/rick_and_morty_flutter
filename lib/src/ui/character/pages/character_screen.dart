@@ -16,7 +16,7 @@ class CharacterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: characterDI.setup(),
+      providers: const CharacterDI().setup(),
       builder: (context, _) {
         return BlocProvider<CharacterBloc>(
           create: (_) => CharacterBloc(

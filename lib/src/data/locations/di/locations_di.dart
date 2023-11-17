@@ -1,7 +1,5 @@
 part of locations;
 
-const LocationsDI locationsDI = LocationsDI();
-
 class LocationsDI extends DI {
   const LocationsDI();
 

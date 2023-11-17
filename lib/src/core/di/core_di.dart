@@ -1,7 +1,5 @@
 part of core;
 
-const CoreDI coreDI = CoreDI();
-
 class CoreDI extends DI {
   const CoreDI();
 

@@ -1,7 +1,5 @@
 part of characters;
 
-const CharactersDI charactersDI = CharactersDI();
-
 class CharactersDI extends DI {
   const CharactersDI();
 

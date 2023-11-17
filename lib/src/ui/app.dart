@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: coreDI.setup(),
+      providers: const CoreDI().setup(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Rick And Morty',
