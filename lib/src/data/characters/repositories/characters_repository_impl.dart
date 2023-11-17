@@ -9,7 +9,8 @@ class CharactersRepositoryImpl implements domain.CharactersRepository {
 
   @override
   Future<domain.CharactersEntity> getCharactersPerPage(int page) async {
-    final characters = await _graphQLService.getCharacters(page);
+    final characters =
+        await _graphQLService.getCharacters(page) as Map<String, dynamic>;
 
     return CharactersModel.fromMap(map: characters);
   }

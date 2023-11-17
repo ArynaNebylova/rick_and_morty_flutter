@@ -20,7 +20,7 @@ class GraphQLServiceImpl implements GraphQLService {
         ),
       );
 
-      return Map<String, String>.from(queryData.data?['character'] as Map);
+      return queryData.data?['character'] as Map<String, String>;
     } catch (err) {
       throw Exception(err);
     }

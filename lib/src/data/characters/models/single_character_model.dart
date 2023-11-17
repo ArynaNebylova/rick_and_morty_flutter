@@ -6,9 +6,9 @@ class SingleCharacterModel extends domain.SingleCharacterEntity {
     required super.id,
   });
 
-  factory SingleCharacterModel.fromMap({required Map<String, String> map}) =>
+  factory SingleCharacterModel.fromMap({required Map<String, dynamic> map}) =>
       SingleCharacterModel(
-        name: map['name']!,
-        id: map['id']!,
+        name: map['name']! as String,
+        id: map['id']! as String,
       );
 }
