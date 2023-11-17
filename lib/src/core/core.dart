@@ -1,7 +1,8 @@
 library core;
 
-import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:provider/single_child_widget.dart';
 
 part 'config/app_config.dart';
 

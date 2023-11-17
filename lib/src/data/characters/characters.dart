@@ -1,6 +1,8 @@
 library characters;
 
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
 import 'package:rick_and_morty/src/core/core.dart';
 import 'package:rick_and_morty/src/domain/characters/characters.dart' as domain;

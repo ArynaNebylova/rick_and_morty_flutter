@@ -1,5 +1,6 @@
+import 'package:provider/provider.dart';
+import 'package:rick_and_morty/src/data/locations/locations.dart';
 import 'package:rick_and_morty/src/domain/locations/locations.dart';
-import 'package:rick_and_morty/src/core/core.dart';
 import 'package:rick_and_morty/src/core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,31 +13,36 @@ class LocationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<LocationsBloc>(
-      create: (_) => LocationsBloc(
-        getLocationsUseCase: sl<GetLocationsUseCase>(),
-      )..add(
-          LocationsLoadEvent(),
-        ),
-      child: BlocBuilder<LocationsBloc, LocationsState>(
-        builder: (BuildContext context, LocationsState state) {
-          if (state is Loading) {
-            return const LoadingWidget();
-          } else if (state is Error) {
-            return CustomErrorWidget(
-              onTap: () => loadData(context),
-            );
-          } else if (state is Success) {
-            return LocationsContent(
-              reachedMax: state.reachedMax,
-              locations: state.locations,
-              loadMoreData: () => loadData(context),
-            );
-          } else {
-            return Container();
-          }
-        },
-      ),
+    return MultiProvider(
+      providers: locationsDI.setup(),
+      builder: (context, _) {
+        return BlocProvider<LocationsBloc>(
+          create: (_) => LocationsBloc(
+            getLocationsUseCase: Provider.of<GetLocationsUseCase>(context),
+          )..add(
+              LocationsLoadEvent(),
+            ),
+          child: BlocBuilder<LocationsBloc, LocationsState>(
+            builder: (BuildContext context, LocationsState state) {
+              if (state is Loading) {
+                return const LoadingWidget();
+              } else if (state is Error) {
+                return CustomErrorWidget(
+                  onTap: () => loadData(context),
+                );
+              } else if (state is Success) {
+                return LocationsContent(
+                  reachedMax: state.reachedMax,
+                  locations: state.locations,
+                  loadMoreData: () => loadData(context),
+                );
+              } else {
+                return Container();
+              }
+            },
+          ),
+        );
+      },
     );
   }
 

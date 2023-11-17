@@ -6,24 +6,29 @@ class CharacterDI extends DI {
   const CharacterDI();
 
   @override
-  void setup() {
-    sl.registerLazySingleton<GraphQLService>(
-      () => GraphQLServiceImpl(
-        gqlClient: sl.call(),
-        query: sl.call(),
+  List<SingleChildWidget> setup() {
+    final graphQLService = Provider<GraphQLService>(
+      create: (ref) => GraphQLServiceImpl(
+        gqlClient: Provider.of<GqlClient>(ref, listen: false),
+        query: Provider.of<GqlQuery>(ref, listen: false),
       ),
     );
 
-    sl.registerLazySingleton<domain.CharacterRepository>(
-      () => CharacterRepositoryImpl(
-        graphQLService: sl.call(),
+    final characterRepository = Provider<domain.CharacterRepository>(
+      create: (ref) => CharacterRepositoryImpl(
+        graphQLService: Provider.of<GraphQLService>(ref, listen: false),
       ),
     );
 
-    sl.registerFactory<domain.GetCharacterUseCase>(
-      () => domain.GetCharacterUseCase(
-        repository: sl.get<domain.CharacterRepository>(),
+    final getCharacterUseCase = Provider<domain.GetCharacterUseCase>(
+      create: (
+        ref,
+      ) =>
+          domain.GetCharacterUseCase(
+        repository: Provider.of<domain.CharacterRepository>(ref, listen: false),
       ),
     );
+
+    return [graphQLService, characterRepository, getCharacterUseCase];
   }
 }

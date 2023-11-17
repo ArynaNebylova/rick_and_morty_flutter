@@ -6,13 +6,15 @@ class CoreDI extends DI {
   const CoreDI();
 
   @override
-  void setup() {
-    sl.registerLazySingleton<GqlClient>(
-      () => GqlClient(),
+  List<SingleChildWidget> setup() {
+    final gqlClient = Provider<GqlClient>(
+      create: (ref) => GqlClient(),
     );
 
-    sl.registerLazySingleton<GqlQuery>(
-      () => GqlQuery(),
+    final gqlQuery = Provider<GqlQuery>(
+      create: (ref) => GqlQuery(),
     );
+
+    return [gqlClient, gqlQuery];
   }
 }
