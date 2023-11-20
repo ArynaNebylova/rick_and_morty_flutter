@@ -1,22 +1,26 @@
-part of locations;
+part of '../locations.dart';
 
 class LocationsModel extends domain.LocationsEntity {
   const LocationsModel({
-    required final List<SingleLocationModel> locations,
-    required final int? nextPage,
-  }) : super(locations: locations, nextPage: nextPage);
+    required List<SingleLocationModel> super.locations,
+    required super.nextPage,
+  });
 
   factory LocationsModel.fromMap({required Map<String, dynamic> map}) =>
       LocationsModel(
-        locations: parseLocations(map['results']),
-        nextPage: map['info']['next'],
+        locations: parseLocations(
+          map['results']! as List<Object?>,
+        ),
+        nextPage: (map['info'] as Map<String, dynamic>)['next'] as int,
       );
 
-  static List<SingleLocationModel> parseLocations(List<Object?> locations) {
+  static List<SingleLocationModel> parseLocations(
+    List<Object?> locations,
+  ) {
     return List.generate(
       locations.length,
       (index) => SingleLocationModel.fromMap(
-        map: locations[index],
+        map: locations[index]! as Map<String, dynamic>,
       ),
     );
   }

@@ -20,7 +20,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
       Loading(),
     );
     try {
-      var character = await getCharacterUseCase.call(event.id);
+      final character = await getCharacterUseCase.call(event.id);
 
       emit(
         Success(character: character),

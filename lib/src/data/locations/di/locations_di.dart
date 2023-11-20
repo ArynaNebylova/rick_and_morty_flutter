@@ -1,29 +1,32 @@
-part of locations;
-
-const LocationsDI locationsDI = LocationsDI();
+part of '../locations.dart';
 
 class LocationsDI extends DI {
   const LocationsDI();
 
   @override
-  void setup() {
-    sl.registerLazySingleton<GraphQLService>(
-      () => GraphQLServiceImpl(
-        gqlClient: sl.call(),
-        query: sl.call(),
+  List<SingleChildWidget> setup() {
+    final graphQLService = Provider<GraphQLService>(
+      create: (ref) => GraphQLServiceImpl(
+        gqlClient: Provider.of<GqlClient>(ref, listen: false),
+        query: Provider.of<GqlQuery>(ref, listen: false),
       ),
     );
 
-    sl.registerLazySingleton<domain.LocationsRepository>(
-      () => LocationsRepositoryImpl(
-        graphQLService: sl.call(),
+    final locationsRepository = Provider<domain.LocationsRepository>(
+      create: (ref) => LocationsRepositoryImpl(
+        graphQLService: Provider.of<GraphQLService>(ref, listen: false),
       ),
     );
 
-    sl.registerFactory<domain.GetLocationsUseCase>(
-      () => domain.GetLocationsUseCase(
-        repository: sl.get<domain.LocationsRepository>(),
+    final getLocationsUseCase = Provider<domain.GetLocationsUseCase>(
+      create: (
+        ref,
+      ) =>
+          domain.GetLocationsUseCase(
+        repository: Provider.of<domain.LocationsRepository>(ref, listen: false),
       ),
     );
+
+    return [graphQLService, locationsRepository, getLocationsUseCase];
   }
 }

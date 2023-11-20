@@ -1,9 +1,7 @@
-part of core;
-
-final GetIt sl = GetIt.instance;
+part of '../core.dart';
 
 abstract class DI {
   const DI();
 
-  void setup();
+  List<SingleChildWidget> setup();
 }

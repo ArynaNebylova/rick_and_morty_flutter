@@ -1,18 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:rick_and_morty/src/core_ui/core_ui.dart';
 import 'package:rick_and_morty/src/domain/characters/characters.dart';
-import 'package:flutter/material.dart';
-
-import '../widgets/character_widget.dart';
+import 'package:rick_and_morty/src/ui/characters/widgets/character_widget.dart';
 
 class CharactersContent extends StatelessWidget {
   final List<SingleCharacterEntity> characters;
   final VoidCallback loadMoreData;
   final bool reachedMax;
-  const CharactersContent(
-      {super.key,
-      required this.characters,
-      required this.loadMoreData,
-      required this.reachedMax});
+  const CharactersContent({
+    super.key,
+    required this.characters,
+    required this.loadMoreData,
+    required this.reachedMax,
+  });
 
   @override
   Widget build(BuildContext context) {

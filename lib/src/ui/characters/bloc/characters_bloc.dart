@@ -29,7 +29,7 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     }
 
     try {
-      var newCharactersData = await getCharactersUseCase.call(nextPage ?? 0);
+      final newCharactersData = await getCharactersUseCase.call(nextPage ?? 0);
 
       nextPage = newCharactersData.nextPage;
       charactersList = [...charactersList, ...newCharactersData.characters];
