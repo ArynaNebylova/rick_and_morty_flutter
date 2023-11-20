@@ -9,18 +9,18 @@ class LocationsModel extends domain.LocationsEntity {
   factory LocationsModel.fromMap({required Map<String, dynamic> map}) =>
       LocationsModel(
         locations: parseLocations(
-          map['results']! as List<Map<String, dynamic>>,
+          map['results']! as List<Object?>,
         ),
-        nextPage: (map['info']! as Map<String, int>)['next'],
+        nextPage: (map['info'] as Map<String, dynamic>)['next'] as int,
       );
 
   static List<SingleLocationModel> parseLocations(
-    List<Map<String, dynamic>> locations,
+    List<Object?> locations,
   ) {
     return List.generate(
       locations.length,
       (index) => SingleLocationModel.fromMap(
-        map: locations[index],
+        map: locations[index]! as Map<String, dynamic>,
       ),
     );
   }

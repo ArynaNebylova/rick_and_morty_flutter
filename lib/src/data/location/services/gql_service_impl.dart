@@ -11,7 +11,7 @@ class GraphQLServiceImpl implements GraphQLService {
         _gqlClient = gqlClient;
 
   @override
-  Future<Map<String, String>> getLocation(String id) async {
+  Future<Map<String, dynamic>> getLocation(String id) async {
     try {
       final queryData = await _gqlClient.gqlClient.query(
         QueryOptions(
@@ -20,7 +20,7 @@ class GraphQLServiceImpl implements GraphQLService {
         ),
       );
 
-      return queryData.data?['location'] as Map<String, String>;
+      return queryData.data?['location'] as Map<String, dynamic>;
     } catch (err) {
       throw Exception(err);
     }

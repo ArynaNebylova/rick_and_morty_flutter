@@ -8,11 +8,11 @@ class LocationModel extends domain.LocationEntity {
     required super.created,
   });
 
-  factory LocationModel.fromMap({required Map<String, String> map}) =>
+  factory LocationModel.fromMap({required Map<String, dynamic> map}) =>
       LocationModel(
-        name: map['name']!,
-        type: map['type']!,
-        dimension: map['dimension']!,
-        created: map['created']!,
+        name: map['name']! as String,
+        type: map['type']! as String,
+        dimension: map['dimension']! as String,
+        created: map['created']! as String,
       );
 }

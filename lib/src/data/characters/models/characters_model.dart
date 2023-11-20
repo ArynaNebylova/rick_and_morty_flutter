@@ -9,18 +9,18 @@ class CharactersModel extends domain.CharactersEntity {
   factory CharactersModel.fromMap({required Map<String, dynamic> map}) =>
       CharactersModel(
         characters: parseCharacters(
-          map['results']! as List<Map<String, dynamic>>,
+          map['results']! as List<Object?>,
         ),
-        nextPage: Map<String, int>.from(map['info']! as Map)['next'],
+        nextPage: (map['info'] as Map<String, dynamic>)['next'] as int,
       );
 
   static List<SingleCharacterModel> parseCharacters(
-    List<Map<String, dynamic>> characters,
+    List<Object?> characters,
   ) {
     return List.generate(
       characters.length,
       (index) => SingleCharacterModel.fromMap(
-        map: characters[index],
+        map: characters[index]! as Map<String, dynamic>,
       ),
     );
   }

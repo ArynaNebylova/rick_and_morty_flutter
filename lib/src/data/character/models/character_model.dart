@@ -9,12 +9,12 @@ class CharacterModel extends domain.CharacterEntity {
     required super.status,
   });
 
-  factory CharacterModel.fromMap({required Map<String, String> map}) =>
+  factory CharacterModel.fromMap({required Map<String, dynamic> map}) =>
       CharacterModel(
-        name: map['name']!,
-        image: map['image']!,
-        species: map['species']!,
-        gender: map['gender']!,
-        status: map['status']!,
+        name: map['name']! as String,
+        image: map['image']! as String,
+        species: map['species']! as String,
+        gender: map['gender']! as String,
+        status: map['status']! as String,
       );
 }

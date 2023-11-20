@@ -9,7 +9,7 @@ class CharacterRepositoryImpl implements domain.CharacterRepository {
 
   @override
   Future<domain.CharacterEntity> getCharacter(String id) async {
-    final Map<String, String> character =
+    final Map<String, dynamic> character =
         await _graphQLService.getCharacter(id);
 
     return CharacterModel.fromMap(map: character);
