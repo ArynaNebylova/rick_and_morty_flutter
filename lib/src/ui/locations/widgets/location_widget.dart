@@ -1,7 +1,7 @@
-import 'package:rick_and_morty/src/domain/locations/locations.dart';
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/src/domain/locations/locations.dart';
 
-import '../../location/pages/location_screen.dart';
+import 'package:rick_and_morty/src/ui/location/pages/location_screen.dart';
 
 class LocationWidget extends StatelessWidget {
   final SingleLocationEntity location;
@@ -13,9 +13,11 @@ class LocationWidget extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) {
-            return LocationScreen(id: location.id);
-          }),
+          MaterialPageRoute(
+            builder: (context) {
+              return LocationScreen(id: location.id);
+            },
+          ),
         );
       },
       child: ListTile(

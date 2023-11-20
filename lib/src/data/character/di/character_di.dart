@@ -1,4 +1,4 @@
-part of character;
+part of '../character.dart';
 
 class CharacterDI extends DI {
   const CharacterDI();

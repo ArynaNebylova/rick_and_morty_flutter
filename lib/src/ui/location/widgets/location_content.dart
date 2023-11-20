@@ -1,5 +1,5 @@
-import 'package:rick_and_morty/src/domain/location/location.dart';
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/src/domain/location/location.dart';
 
 class LocationContent extends StatelessWidget {
   final LocationEntity location;

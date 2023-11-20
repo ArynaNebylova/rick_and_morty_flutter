@@ -1,4 +1,4 @@
-part of characters;
+part of '../characters.dart';
 
 class GetCharactersUseCase {
   final CharactersRepository repository;

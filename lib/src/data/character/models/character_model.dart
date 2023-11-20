@@ -1,24 +1,20 @@
-part of character;
+part of '../character.dart';
 
 class CharacterModel extends domain.CharacterEntity {
   const CharacterModel({
-    required final String name,
-    required final String image,
-    required final String species,
-    required final String gender,
-    required final String status,
-  }) : super(
-            name: name,
-            image: image,
-            species: species,
-            gender: gender,
-            status: status);
+    required super.name,
+    required super.image,
+    required super.species,
+    required super.gender,
+    required super.status,
+  });
 
-  factory CharacterModel.fromMap({required Map map}) => CharacterModel(
-        name: map['name'],
-        image: map['image'],
-        species: map['species'],
-        gender: map['gender'],
-        status: map['status'],
+  factory CharacterModel.fromMap({required Map<String, dynamic> map}) =>
+      CharacterModel(
+        name: map['name']! as String,
+        image: map['image']! as String,
+        species: map['species']! as String,
+        gender: map['gender']! as String,
+        status: map['status']! as String,
       );
 }
