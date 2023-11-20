@@ -1,4 +1,4 @@
-part of core;
+part of '../core.dart';
 
 class GqlQuery {
   String charactersQuery = '''

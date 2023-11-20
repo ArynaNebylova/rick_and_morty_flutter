@@ -1,4 +1,4 @@
-part of characters;
+part of '../characters.dart';
 
 class GraphQLServiceImpl implements GraphQLService {
   final GqlQuery _query;

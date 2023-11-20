@@ -1,4 +1,4 @@
-part of characters;
+part of '../characters.dart';
 
 class CharactersRepositoryImpl implements domain.CharactersRepository {
   final GraphQLService _graphQLService;
@@ -9,11 +9,8 @@ class CharactersRepositoryImpl implements domain.CharactersRepository {
 
   @override
   Future<domain.CharactersEntity> getCharactersPerPage(int page) async {
-    final characters = await _graphQLService.getCharacters(page);
-
-    if (characters == null || characters.isEmpty) {
-      return const domain.CharactersEntity(characters: [], nextPage: null);
-    }
+    final characters =
+        await _graphQLService.getCharacters(page) as Map<String, dynamic>;
 
     return CharactersModel.fromMap(map: characters);
   }

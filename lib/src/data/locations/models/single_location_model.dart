@@ -1,13 +1,14 @@
-part of locations;
+part of '../locations.dart';
 
 class SingleLocationModel extends domain.SingleLocationEntity {
   const SingleLocationModel({
-    required final String name,
-    required final String id,
-  }) : super(name: name, id: id);
+    required super.name,
+    required super.id,
+  });
 
-  factory SingleLocationModel.fromMap({required map}) => SingleLocationModel(
-        name: map['name'],
-        id: map['id'],
+  factory SingleLocationModel.fromMap({required Map<String, dynamic> map}) =>
+      SingleLocationModel(
+        name: map['name']! as String,
+        id: map['id']! as String,
       );
 }

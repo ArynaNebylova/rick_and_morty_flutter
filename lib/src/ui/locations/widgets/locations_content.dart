@@ -1,18 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:rick_and_morty/src/core_ui/core_ui.dart';
 import 'package:rick_and_morty/src/domain/locations/locations.dart';
-import 'package:flutter/material.dart';
-
-import 'location_widget.dart';
+import 'package:rick_and_morty/src/ui/locations/widgets/location_widget.dart';
 
 class LocationsContent extends StatelessWidget {
   final List<SingleLocationEntity> locations;
   final VoidCallback loadMoreData;
   final bool reachedMax;
-  const LocationsContent(
-      {super.key,
-      required this.locations,
-      required this.loadMoreData,
-      required this.reachedMax});
+  const LocationsContent({
+    super.key,
+    required this.locations,
+    required this.loadMoreData,
+    required this.reachedMax,
+  });
 
   @override
   Widget build(BuildContext context) {

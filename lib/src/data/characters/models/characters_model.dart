@@ -1,22 +1,26 @@
-part of characters;
+part of '../characters.dart';
 
 class CharactersModel extends domain.CharactersEntity {
   const CharactersModel({
-    required final List<SingleCharacterModel> characters,
-    required final int? nextPage,
-  }) : super(characters: characters, nextPage: nextPage);
+    required List<SingleCharacterModel> super.characters,
+    required super.nextPage,
+  });
 
   factory CharactersModel.fromMap({required Map<String, dynamic> map}) =>
       CharactersModel(
-        characters: parseCharacters(map['results']),
-        nextPage: map['info']['next'],
+        characters: parseCharacters(
+          map['results']! as List<Object?>,
+        ),
+        nextPage: (map['info'] as Map<String, dynamic>)['next'] as int,
       );
 
-  static List<SingleCharacterModel> parseCharacters(List<Object?> characters) {
+  static List<SingleCharacterModel> parseCharacters(
+    List<Object?> characters,
+  ) {
     return List.generate(
       characters.length,
       (index) => SingleCharacterModel.fromMap(
-        map: characters[index],
+        map: characters[index]! as Map<String, dynamic>,
       ),
     );
   }

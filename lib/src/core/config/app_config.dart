@@ -1,4 +1,4 @@
-part of core;
+part of '../core.dart';
 
 class AppConfig {
   static const String baseRickAndMortyUrl =

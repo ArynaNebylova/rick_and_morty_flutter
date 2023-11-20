@@ -1,5 +1,5 @@
-import 'package:rick_and_morty/src/domain/character/character.dart';
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/src/domain/character/character.dart';
 
 class CharacterContent extends StatelessWidget {
   final CharacterEntity character;
